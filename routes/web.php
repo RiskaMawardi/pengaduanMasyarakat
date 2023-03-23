@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MasyarakatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,11 @@ Route::post('index-register',[AuthController::class,'register'])->name('register
 //Login
 Route::get('index-login',[AuthController::class,'indexLogin']);
 Route::post('index-login', [AuthController::class, 'storeLogin'])->name('login');
+
+//logout
+Route::get('/logout',[AuthController::class,'logout']);
+
+
+//Route Masyarakat
+Route::get('index-masyarakat',[MasyarakatController::class,'index']);
+Route::post('upload-pengduan',[MasyarakatController::class.'storePengduan'])->name('uploadPengaduan');
