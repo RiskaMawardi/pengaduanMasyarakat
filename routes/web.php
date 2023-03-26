@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MasyarakatController;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,16 @@ Route::get('/logout',[AuthController::class,'logout']);
 //Route Masyarakat
 Route::get('index-masyarakat',[MasyarakatController::class,'index']);
 Route::post('upload',[MasyarakatController::class,'upload'])->name('upload');
+
+
+
+
+//admin route
+Route::get('dashboard-admin',[AdminController::class,'index']);
+
+//reg admin
+Route::get('reg-admin',[AdminController::class,'indexRegis']);
+Route::post('reg-admin',[AdminController::class,'regAdmin'])->name('regAdmin');
+
+//log admin
+Route::get('log-admin',[AdminController::class, 'loginAd']);

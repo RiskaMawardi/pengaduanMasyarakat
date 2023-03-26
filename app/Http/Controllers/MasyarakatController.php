@@ -10,24 +10,25 @@ use Illuminate\Support\Facades\Auth;
 class MasyarakatController extends Controller
 {
     public function index(){
-        $data = Masyarakat::first();
-        return view('masyarakat.index' , compact('data'));
+        // $id = Masyarakat::first();
+        $id = Auth::user()->nik;
+        $data = Pengaduan::get();
+        return view('masyarakat.index' , compact('data','id'));
     }
 
     public function upload(Request $request){
-
        //dd($request->all());
 
        $request->validate([
         'nik' => 'required',
         'isi_laporan' => 'required',
-        'foto' => 'required'
+        'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
        ]);
 
         $filename='';
 
-        if($request->hasFile('foto')){
-            $filename= date('YmdHis') . "." . $request->getClientOriginalExtension();
+        if($foto = $request->file('foto')){
+            $filename= date('YmdHis') . "." .$foto->getClientOriginalExtension();
             $request->foto->move(public_path('/images'),$filename);
         }
 
