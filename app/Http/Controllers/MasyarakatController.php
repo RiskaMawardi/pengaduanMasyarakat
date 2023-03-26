@@ -10,12 +10,19 @@ use Illuminate\Support\Facades\Auth;
 class MasyarakatController extends Controller
 {
     public function index(){
-        return view('masyarakat.index');
+        $data = Masyarakat::first();
+        return view('masyarakat.index' , compact('data'));
     }
 
-    public function storePengduan(Request $request){
+    public function upload(Request $request){
 
        //dd($request->all());
+
+       $request->validate([
+        'nik' => 'required',
+        'isi_laporan' => 'required',
+        'foto' => 'required'
+       ]);
 
         $filename='';
 
@@ -25,9 +32,11 @@ class MasyarakatController extends Controller
         }
 
         Pengaduan::create([
+            'nik' =>  $request->nik,
             'isi_laporan' => $request->isi_laporan,
             'foto' => $filename,
-            'nik' => Auth::user()->id,
+            'status' => 0,
+           
         ]);
      
         return redirect('index-masyarakat')->with('success','Product created successfully.');

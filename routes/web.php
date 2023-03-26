@@ -35,4 +35,4 @@ Route::get('/logout',[AuthController::class,'logout']);
 
 //Route Masyarakat
 Route::get('index-masyarakat',[MasyarakatController::class,'index']);
-Route::post('upload-pengduan',[MasyarakatController::class.'storePengduan'])->name('uploadPengaduan');
+Route::post('upload',[MasyarakatController::class,'upload'])->name('upload');

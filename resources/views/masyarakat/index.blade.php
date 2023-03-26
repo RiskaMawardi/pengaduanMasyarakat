@@ -29,9 +29,10 @@
                         <div class="card-header">
                             <h2>Form Pengaduan</h2>
                         </div>
-                        <form action="{{route('uploadPengaduan')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('upload')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
+                                <input type="hidden" value="{{$data->nik}}">
                                 <label for="">Isi Laporan</label>
                                 <textarea type="text" name="isi_laporan" class="form-control"></textarea>
                                 <label for="">Foto</label>
