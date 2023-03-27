@@ -31,10 +31,10 @@
                         <p>Welcome back! Please enter your details.</p>
                     </div>
                     <div class="login-form">
-                        <form action="" method="POST">
+                        <form action="{{route('adminlogin')}}" method="POST">
                             @csrf
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
+                            <label for="email" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="email" name="username"
                                 placeholder="Enter your email">
 
                             <label for="password" class="form-label">Password</label>

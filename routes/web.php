@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MasyarakatController;
+use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,11 +43,23 @@ Route::post('upload',[MasyarakatController::class,'upload'])->name('upload');
 
 
 //admin route
-Route::get('dashboard-admin',[AdminController::class,'index']);
-
+Route::get('dashboard-admin',[AdminController::class,'index'])->name('dashboard-admin');
+Route::get('data-petugas',[AdminController::class,'dataPetugas'])->name('dataPetugas');
 //reg admin
 Route::get('reg-admin',[AdminController::class,'indexRegis']);
 Route::post('reg-admin',[AdminController::class,'regAdmin'])->name('regAdmin');
 
 //log admin
 Route::get('log-admin',[AdminController::class, 'loginAd']);
+Route::post('log-admin', [AuthController::class, 'adminLogin'])->name('adminlogin');
+Route::post('approveLaporan', [AdminController::class,'approveLaporan'])->name('approveLaporan');
+
+//data petugas
+Route::get('data-petugas',[AdminController::class,'dataPetugas'])->name('dataPetugas');
+Route::post('data-petugas',[AdminController::class,'createPetugas'])->name('createPetugas');
+
+
+
+
+//petugas Route
+Route::get('dash-petugas',[PetugasController::class,'index'])->name('dashboard-petugas');

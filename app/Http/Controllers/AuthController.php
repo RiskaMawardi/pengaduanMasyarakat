@@ -6,9 +6,14 @@ use App\Models\Masyarakat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Providers\RouteServiceProvider;
 
 class AuthController extends Controller
 {
+
+    use AuthenticatesUsers;
+    protected $redirectTo = RouteServiceProvider::HOME;
     //Register
     public function index(){
         return view('auth.register');
@@ -62,5 +67,20 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
     
         return redirect('index-login');
+    }
+
+    protected function adminLogin(Request $request){
+        
+        $login = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        if (Auth::guard('admin')->attempt($login)){
+            $request->session()->regenerate();
+            return redirect()->intended(route('dashboard-admin'));
+        }
+
+        return back()->with('loginError', 'Login gagal! Silahkan coba lagi');
     }
 }
