@@ -13,6 +13,11 @@
     <section class="navbar">
         <div class="container">
             <h1>halooo !</h1>
+            @auth
+        <div>dapet</div>
+        @else
+        <div>ga dapet</div>
+        @endauth
         </div>
     </section>
     <section class="form-pengaduan">

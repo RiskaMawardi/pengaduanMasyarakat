@@ -50,7 +50,9 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        //dd($credentials);
+
+        if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('index-masyarakat');
         }
@@ -81,6 +83,6 @@ class AuthController extends Controller
             return redirect()->intended(route('dashboard-admin'));
         }
 
-        return back()->with('loginError', 'Login gagal! Silahkan coba lagi');
+        return back()->with('loginError', 'Login gagal! Silahkan coba   ');
     }
 }

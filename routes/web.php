@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MasyarakatController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\TanggapanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,10 @@ Route::post('approveLaporan', [AdminController::class,'approveLaporan'])->name('
 Route::get('data-petugas',[AdminController::class,'dataPetugas'])->name('dataPetugas');
 Route::post('data-petugas',[AdminController::class,'createPetugas'])->name('createPetugas');
 
+//tanggapan
+Route::get('form-tanggapan/{id}',[TanggapanController::class,'index'])->name('formTanggapan');
+Route::post('form-tanggapan/{id}',[TanggapanController::class,'storeTanggapan'])->name('storeTanggapan');
+Route::get('laporan-index',[AdminController::class,'indexLaporan'])->name('indexLaporan');
 
 
 

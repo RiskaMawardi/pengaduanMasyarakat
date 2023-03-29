@@ -25,22 +25,17 @@
                 <span class="navbar-toggler-icon">nnn</span>
             </button>
             <a href="{{route('dataPetugas')}}" class="btn btn-warning">Data Petugas</a>
-            <a href="{{route('indexLaporan')}}" class="btn btn-info">Laporan Pengaduan</a>
+
         </div>
     </nav>
     <section class="pengaduan">
-        <!-- @auth
-        <div>dapet</div>
-        @else
-        <div>ga dapet</div>
-        @endauth -->
-
         <div class="container mt-4">
             <table id="myTable" class="display">
                 <thead>
                     <tr>
 
                         <th>No</th>
+                        <th>NIK</th>
                         <th>Isi Laporan</th>
                         <th>Foto</th>
                         <th>Status</th>
@@ -53,30 +48,14 @@
                     @foreach($data as $data)
                     <tr>
                         <td>{{$i++}}</td>
+                        <td>{{$data->nik}}</td>
                         <td>{{$data->isi_laporan}}</td>
                         <td><img src="/images/{{$data->foto}}" alt="" class="w-50"></td>
-                        @if($data->status == 0)
-                        <td>Laporan Pending</td>
-                        @else
+                        <td>{{$data->tanggapan}}</td>
+                        <td>{{$data->tgl_tanggapan}}</td>
+                        <td>{{$data->created_at}}</td>
                         <td>{{$data->status}}</td>
-                        @endif
-                        <td class="d-flex">
-                            <?php if($data->status == 0 ){ ?>
-                            <form method="POST" action="{{route
-                                ('approveLaporan')}}">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$data->id}}">
-                                <input type="submit" value="Validasi Laporan" class="btn btn-primary mr-1">
-                            </form>
-                            <?php }elseif($data->status == "proses"){?>
-                            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Tanggapi</button> -->
-                            <a href="{{route('formTanggapan',$data->id)}}" class="btn btn-primary">Tanggappi</a>
-                            <a href="" class="btn btn-danger">Hapus</a>
-                            <?php }else{ ?>
-                            -
-                            <?php } ?>
-
-                        </td>
+                        <td><a href="" class="btn btn-warning">Cetak</a></td>
                     </tr>
                     @endforeach
                 </tbody>

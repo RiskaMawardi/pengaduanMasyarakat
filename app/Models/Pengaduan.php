@@ -11,4 +11,5 @@ class Pengaduan extends Model
 
     protected $table='pengaduan';
     protected $fillable=['nik','isi_laporan','foto','status'];
+    
 }

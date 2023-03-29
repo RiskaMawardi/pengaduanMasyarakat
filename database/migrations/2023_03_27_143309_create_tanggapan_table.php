@@ -18,6 +18,7 @@ return new class extends Migration
             $table->char('id_pengaduan');
             $table->char('id_petugas');
             $table->text('tanggapan');
+            $table->date('tgl_tanggapan');
             $table->timestamps();
         });
     }
