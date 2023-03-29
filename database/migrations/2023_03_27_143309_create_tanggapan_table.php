@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tanggapan', function (Blueprint $table) {
             $table->id();
-            $table->char('id_pengaduan');
+            $table->biginteger('id_pengaduan')->unsigned();
             $table->char('id_petugas');
             $table->text('tanggapan');
             $table->date('tgl_tanggapan');

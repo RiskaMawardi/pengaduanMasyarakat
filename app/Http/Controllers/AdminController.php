@@ -87,10 +87,19 @@ class AdminController extends Controller
         // ->leftJoin('tanggapan', 'pengaduan.id', '=', 'tanggapan.id_pengaduan')
         // ->get('tgl_tanggapan','tanggapan')
         $data = DB::table('tanggapan')
-        ->leftjoin('pengaduan', 'tanggapan.id_pengaduan', '=', 'pengaduan.id')
-        ->select('tanggapan.*', 'pengaduan.nik','pengaduan.foto','pengaduan.isi_laporan','pengaduan.created_at')
+        ->leftjoin('pengaduan', 'tanggapan.id_pengaduan','pengaduan.id')
+        ->select('tanggapan.*', 'pengaduan.nik','pengaduan.foto','pengaduan.isi_laporan','pengaduan.created_at','pengaduan.status')
         ->get();
+        //$data = Pengaduan::get();
 
         return view('admin.laporan.index',compact('data'));
+    }
+
+    public function cetak(){
+        $data = DB::table('tanggapan')
+        ->leftjoin('pengaduan', 'tanggapan.id_pengaduan','pengaduan.id')
+        ->select('tanggapan.*', 'pengaduan.nik','pengaduan.foto','pengaduan.isi_laporan','pengaduan.created_at','pengaduan.status')
+        ->get();
+        return view('admin.laporan.cetak',compact('data'));
     }
 }

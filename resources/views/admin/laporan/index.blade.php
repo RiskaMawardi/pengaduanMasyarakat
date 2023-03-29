@@ -38,6 +38,9 @@
                         <th>NIK</th>
                         <th>Isi Laporan</th>
                         <th>Foto</th>
+                        <th>Tanggapan</th>
+                        <th>Tgl Tanggapan</th>
+                        <th>Tgl Pengaduan</th>
                         <th>Status</th>
                         <th>Action</th>
 
@@ -55,7 +58,7 @@
                         <td>{{$data->tgl_tanggapan}}</td>
                         <td>{{$data->created_at}}</td>
                         <td>{{$data->status}}</td>
-                        <td><a href="" class="btn btn-warning">Cetak</a></td>
+                        <td><a href="{{route('cetak',$data->id)}}" class="btn btn-warning">Cetak</a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -65,6 +65,9 @@ Route::post('form-tanggapan/{id}',[TanggapanController::class,'storeTanggapan'])
 Route::get('laporan-index',[AdminController::class,'indexLaporan'])->name('indexLaporan');
 
 
+//cetak
+Route::get('cetak/{id}',[AdminController::class,'cetak'])->name('cetak');
+
 
 //petugas Route
 Route::get('dash-petugas',[PetugasController::class,'index'])->name('dashboard-petugas');
